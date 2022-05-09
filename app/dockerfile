@@ -1,0 +1,8 @@
+FROM public.ecr.aws/lambda/python:3.9
+COPY requirements.txt .
+COPY Arial.ttf .
+RUN mkdir -p /usr/share/fonts/truetype
+RUN install -m644 Arial.ttf /usr/share/fonts/truetype/
+RUN pip install -r requirements.txt
+COPY app.py .
+CMD [ "app.handler" ]
